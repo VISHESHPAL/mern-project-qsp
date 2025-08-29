@@ -21,9 +21,7 @@ export const register = expressAsyncHandler(async (req, res, next) => {
     password: hashedPassword,
   });
 
-  return res
-    .status(201)
-    .json(new ApiResponse(201, "User Registered Successfully", true, newUser));
+new ApiResponse(201, "User Registered Successfully", true, newUser).send(res)
 });
 
 export const login = expressAsyncHandler(async (req, res, next) => {
@@ -42,9 +40,7 @@ export const login = expressAsyncHandler(async (req, res, next) => {
     maxAge: 1 * 24 * 60 * 60 * 1000,
   });
 
-  return res
-    .status(201)
-    .json(new ApiResponse(201, "User LoggedIn Successfully ! ", true, token));
+  new ApiResponse(201, "User LoggedIn Successfully ! ", true, token).send(res)
 });
 
 export const logout = expressAsyncHandler(async (req, res, next) => {
@@ -52,11 +48,9 @@ export const logout = expressAsyncHandler(async (req, res, next) => {
      httpOnly : false,
   });
 
-  return res
-    .status(200)
-    .json(new ApiResponse(200, "User Logout Successfully ! ", true));
+new ApiResponse(200, "User Logout Successfully ! ", true).send(res)
 });
 
 export const isLoggedIn = expressAsyncHandler(async (req, res, next) => {
-  return res.status(200).json(new ApiResponse(200, "User Is Logged In", true));
+  return new ApiResponse(200, "User Is Logged In", true).send(res)
 });

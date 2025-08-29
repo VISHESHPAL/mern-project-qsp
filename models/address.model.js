@@ -38,6 +38,6 @@ const addressSchema = new mongoose.Schema(
   }
 );
 
-const Product = mongoose.model("Product", addressSchema);
+const Address = mongoose.model("Address", addressSchema);
 
-export default Product;
+export default Address;

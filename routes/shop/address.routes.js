@@ -1,16 +1,23 @@
-import express from 'express';
-import {updateSingleItemAddress, addAddress, deleteAddress, getAllAddress, getSingleAddress, updateAddress } from '../../controllers/shop/address.controller.js';
+import express from "express";
+import {
+  updateSingleItemAddress,
+  addAddress,
+  deleteAddress,
+  getAllAddress,
+  getSingleAddress,
+  updateAddress,
+} from "../../controllers/shop/address.controller.js";
+import authenticate from "../../middleware/auth.middleware.js";
+import validateRequest from "../../middleware/validation.middleware.js";
+import { addressValidation } from "../../validations/address.validation.js";
 
-const productRoutes = express.Router();
+const addressRoutes = express.Router();
 
+addressRoutes.post("/add", authenticate, validateRequest(addressValidation), addAddress);
+addressRoutes.get("/all", authenticate, getAllAddress);
+addressRoutes.get("/:id", authenticate, getSingleAddress);
+addressRoutes.put("/:id", authenticate, updateAddress);
+addressRoutes.patch("/:id", authenticate, updateSingleItemAddress);
+addressRoutes.delete("/:id", authenticate, deleteAddress);
 
-
-productRoutes.post("/add", addAddress);
-productRoutes.get("/all", getAllAddress)
-productRoutes.get("/:id", getSingleAddress)
-productRoutes.put("/:id", updateAddress)
-productRoutes.patch("/:id", updateSingleItemAddress)
-productRoutes.delete("/:id", deleteAddress)
-
-
-export default productRoutes;
+export default addressRoutes;
