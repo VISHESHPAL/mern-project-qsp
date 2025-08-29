@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    const connect = await mongoose.connect(`${process.env.MONGO_URI}/mernApp`);
+    const connect = await mongoose.connect(`${process.env.MONGO_URI}`);
 
     console.log(`DATABASE CONNECTED `, connect.connection.host)
   } catch (error) {

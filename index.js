@@ -3,21 +3,24 @@ import dotenv from 'dotenv'
 import connectDB from './db/db.js';
 import productRoutes from './routes/admin/product.routes.js';
 import userRouter from './routes/user/user.routes.js';
+import error from './middleware/error.middleware.js';
+import cookieParser from 'cookie-parser';
 dotenv.config()
 
 
 
 const app = express();
 app.use(express.json())
+app.use(cookieParser())
 
 
 connectDB();
-
 
 app.use("/api/v1/users",userRouter)
 app.use("/api/v1/address ",productRoutes)
 app.use("/api/v1/products",productRoutes)
 
+app.use(error);
 
 app.get("/", (req, res) =>{
     res.send("API IS WORKING");
