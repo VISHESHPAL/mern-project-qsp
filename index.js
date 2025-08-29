@@ -19,7 +19,7 @@ connectDB();
 
 app.use("/api/v1/users",userRouter)
 app.use("/api/v1/shop/addresses",addressRoutes)
-app.use("/api/v1/products",productRoutes)
+app.use("/api/v1/admin/products",productRoutes)
 
 app.use(error);
 
